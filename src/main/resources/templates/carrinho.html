@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+  <title>Meu Carrinho</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+  <style>
+    .container {
+      margin-top: 50px;
+    }
+
+    .table {
+      margin-top: 20px;
+    }
+
+    .card {
+      margin-top: 20px;
+      padding: 10px;
+    }
+
+    .card img {
+      max-height: 50px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<div class="container">
+  <h1 class="mt-5">Carrinho de Compras</h1>
+
+  <div class="card">
+    <div class="table-responsive">
+      <table class="table mt-4">
+        <thead>
+        <tr>
+          <th scope="col">Imagem</th>
+          <th scope="col">ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Sabor</th>
+          <th scope="col">Cobertura</th>
+          <th scope="col">Acompanhamentos</th>
+          <th scope="col">Preço</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sorvete : ${carrinho}" th:object="${sorvete}">
+          <td><img th:src="@{'/images/' + *{imagemUri}}" alt="Sorvete"></td>
+          <td th:text="*{id}"></td>
+          <td th:text="*{nome}"></td>
+          <td th:text="*{sabor}"></td>
+          <td th:text="*{cobertura}"></td>
+          <td th:text="*{acompanhamentos}"></td>
+          <td th:text="'R$ ' + *{preco}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Exibe mensagem de carrinho vazio ou erro de sessão -->
+  <div class="card">
+    <div class="card-body">
+      <div class="mt-4" th:if="${mensagem}">
+        <p class="text-center" th:text="${mensagem}"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

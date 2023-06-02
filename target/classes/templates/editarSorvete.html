@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Sorvete - Sorveteria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
+</head>
+<body class="background-color">
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center mb-4">Editar Sorvete</h1>
+                    <form method="post" th:action="@{/salvar}" th:object="${sorvete}" enctype="multipart/form-data">
+                        <input type="hidden" th:field="*{id}">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome" th:field="*{nome}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="preco" class="form-label">Preço</label>
+                            <input type="text" class="form-control" id="preco" th:field="*{preco}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="sabor" class="form-label">Sabor</label>
+                            <input type="text" class="form-control" id="sabor" th:field="*{sabor}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cobertura" class="form-label">Cobertura</label>
+                            <input type="text" class="form-control" id="cobertura" th:field="*{cobertura}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="acompanhamentos" class="form-label">Acompanhamentos</label>
+                            <input type="text" class="form-control" id="acompanhamentos" th:field="*{acompanhamentos}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="imagem" class="form-label">Imagem</label>
+                            <input type="file" class="form-control" id="imagem" name="file">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/script.js}" defer></script>
+</body>
+</html>
