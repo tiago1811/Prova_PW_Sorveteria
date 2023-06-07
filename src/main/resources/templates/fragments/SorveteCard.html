@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<body>
+
+<section class="py-5" th:fragment="sCard">
+  <div class="container px-4 px-lg-5 mt-5">
+    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+      <div class="col mb-4" th:each="sorvete : ${listar}" th:object="${sorvete}">
+        <div class="card h-100 shadow-sm">
+          <img class="card-img-top img-fluid" th:src="@{'/images/' + *{imagemUri}}" alt="Sorvete" style="max-height: 200px; object-fit: cover;" />
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h5 class="card-title fw-bold" th:text="*{nome}"></h5>
+              <div class="badge bg-success text-light h1" th:text="'R$ ' + *{preco}"></div>
+            </div>
+            <div class="d-flex flex-column align-items-start">
+              <div class="text-dark fw-bold">Sabor: <span th:text="*{sabor}"></span></div>
+              <div class="text-dark fw-bold">Cobertura: <span th:text="*{cobertura}"></span></div>
+              <div class="text-dark fw-bold">Acompanhamentos: <span th:text="*{acompanhamentos}"></span></div>
+            </div>
+            <div class="text-end mt-3">
+              <button class="btn btn-outline-success" th:href="@{/adicionarCarrinho(id = *{id})}">Adicionar ao Carrinho</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
